@@ -1,9 +1,14 @@
 <template>
-  <main class="container">
-    <div class="row">
-      <CardComponent :thumb="element.card_images[0].image_url" :title="element.name" :type="element.type" v-for="(element, index) in store.cardList" :key="index"/>
-    </div>
-  </main>
+  <div class="wrapper">
+    <header>
+      <HeaderComponent/>
+    </header>
+    <main class="container">
+      <div class="row">
+        <CardComponent :thumb="element.card_images[0].image_url" :title="element.name" :type="element.type" v-for="(element, index) in store.cardList" :key="index"/>
+      </div>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -38,5 +43,10 @@
 </script>
 
 <style lang="scss" scoped>
-
+.wrapper{
+  background-image: url(./assets/images/background.jpeg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 </style>
