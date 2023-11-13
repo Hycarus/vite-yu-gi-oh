@@ -6,7 +6,7 @@
     </header>
     <section class="container">
       <input type="number" placeholder="Type how many cards you want to see" v-model="store.endPoint.num">
-      <button class="btn btn-success" @click="getCard()">Search</button>
+      <button class="btn btn-success" @click="splashTrue(), getCard()">Search</button>
     </section>
     <main class="container">
       <div class="bg-black text-light p-3 rounded badge mb-2 ">Found {{store.cardList.length}} cards</div>
@@ -42,6 +42,9 @@
           store.cardList = response.data.data;
           store.splash = false
         })
+      },
+      splashTrue(){
+        store.splash = true
       }
     },
     created(){
