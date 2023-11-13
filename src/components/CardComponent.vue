@@ -1,11 +1,11 @@
 <template>
-    <div class="col-2">
-        <div>
+    <div class="col-3">
+        <div class="card my-3 " style="width: 18rem;">
             <img class="w-100" :src="thumb" :alt="title">
-        </div>
-        <div>
-            <h2>{{ title }}</h2>
-            <h5>{{ type }}</h5>
+            <div class="card-body">
+                <h2 class="card-title">{{title}}</h2>
+                <h5 class="card-text">{{type}}</h5>
+            </div>
         </div>
     </div>
 </template>
@@ -22,5 +22,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+.card{
+    min-height: 600px;
+}
 </style>
