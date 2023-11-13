@@ -1,9 +1,9 @@
 <template>
-    <div class="col-3">
-        <div class="card my-3 " style="width: 18rem;">
-            <img class="w-100" :src="thumb" :alt="title">
-            <div class="card-body">
-                <h2 class="card-title">{{title}}</h2>
+    <div class="col-2">
+        <div class="card mb-3">
+            <div><img class="w-100" :src="thumb" :alt="title"></div>
+            <div class="card-body bg-danger">
+                <h4 class="">{{title}}</h4>
                 <h5 class="card-text">{{type}}</h5>
             </div>
         </div>
@@ -22,7 +22,7 @@
 </script>
 
 <style lang="scss" scoped>
-.card{
-    min-height: 600px;
+.card-body{
+    min-height: 180px;
 }
 </style>
