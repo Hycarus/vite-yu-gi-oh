@@ -1,16 +1,16 @@
 <template>
   <SplashComponent v-if="store.splash"/>
   <div v-else class="wrapper">
-    <header>
+    <header class="position-fixed z-1 w-100 d-flex">
       <HeaderComponent/>
+      <section class="container d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <input type="number" v-model="store.endPoint.num">
+          <button class="btn btn-success mx-3" @click="splashTrue(), getCard()">Search</button>
+        </div>
+        <SearchbarComponent class="me-5" @filter-change="filterArchetype"/>
+      </section>
     </header>
-    <section class="container d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center">
-        <input type="number" placeholder="Type how many cards you want to see" v-model="store.endPoint.num">
-        <button class="btn btn-success" @click="splashTrue(), getCard()">Search</button>
-      </div>
-      <SearchbarComponent @filter-change="filterArchetype"/>
-    </section>
     <main class="container">
       <div class="bg-black text-light p-3 rounded badge mb-2 ">Found {{store.cardList.length}} cards</div>
       <div class="row">
@@ -105,5 +105,11 @@
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+}
+main{
+  padding-top: 200px;
+}
+section{
+    background-color: rgb(27, 27, 27);
 }
 </style>

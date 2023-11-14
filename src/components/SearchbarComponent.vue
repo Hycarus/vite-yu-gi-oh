@@ -18,9 +18,7 @@
             }
         },
         methods:{
-            // passData(){
-            //     this.$emit('filterChange', this.textSearch)
-            // }
+            
         }
     }
 </script>

@@ -1,6 +1,13 @@
 <template>
-    <div>
+    <div class="gooey">
+        <span class="dot"></span>
+        <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
+    <h1 class="text-center">Loading</h1>
 </template>
 
 <script>
@@ -10,12 +17,55 @@
 </script>
 
 <style lang="scss" scoped>
-div{
-    width: 100%;
-    height: 100vw;
-    background-image: url(/images/kaiba.gif);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+h1{
+    margin-top: 300px;
+}
+.gooey{
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 142px;
+  height: 40px;
+  margin: -20px 0 0 -71px;
+  background: white;
+  filter: contrast(20);
+  .dot{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 12px;
+    left: 15px;
+    filter: blur(4px);
+    background: #000;
+    border-radius: 50%;
+    transform: translateX(0);
+    animation: dot 2.8s infinite;
+  }
+  .dots{
+    transform: translateX(0);
+    margin-top: 12px;
+    margin-left: 31px;
+    animation: dots 2.8s infinite;
+    span {
+        display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      margin-left: 16px;
+      filter: blur(4px);
+      background: #000;
+      border-radius: 50%;
+    }
+  }
+}
+@keyframes dot {
+    50%{
+       transform: translateX(96px) 
+    }
+}
+@keyframes dots {
+    50% {
+        transform: translateX(-31px) 
+    }
 }
 </style>
