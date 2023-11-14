@@ -84,9 +84,16 @@
       },
     },
     created(){
-      Promise.all([this.getCard(), this.getArchetype()]).then((results) =>{
-        const card = results[0];
-        const archetype = results[1];
+      function getArchetype(){
+        return axios.get(store.archetypeUrl)
+      }
+      function getCard(){
+        return axios.get(store.apiUrl, {params: store.endPoint})
+      }
+      Promise.all([getCard(), getArchetype()]).then((results) =>{
+        store.cardList = results[0].data.data;
+        store.archetypeList = results[1].data;
+        store.splash = false
       })
     }
   }
