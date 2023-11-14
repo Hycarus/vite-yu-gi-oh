@@ -72,7 +72,7 @@
             archetype: search
           }
         } else{
-          this.params = null;
+          this.params = store.endPoint
         }
         this.getCardFiltered()
       },
@@ -84,8 +84,10 @@
       },
     },
     created(){
-      this.getCard(),
-      this.getArchetype()
+      Promise.all([this.getCard(), this.getArchetype()]).then((results) =>{
+        const card = results[0];
+        const archetype = results[1];
+      })
     }
   }
 </script>
