@@ -4,9 +4,12 @@
     <header>
       <HeaderComponent/>
     </header>
-    <section class="container">
-      <input type="number" placeholder="Type how many cards you want to see" v-model="store.endPoint.num">
-      <button class="btn btn-success" @click="splashTrue(), getCard()">Search</button>
+    <section class="container d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <input type="number" placeholder="Type how many cards you want to see" v-model="store.endPoint.num">
+        <button class="btn btn-success" @click="splashTrue(), getCard()">Search</button>
+      </div>
+      <SearchbarComponent @filter-change="filterArchetype"/>
     </section>
     <main class="container">
       <div class="bg-black text-light p-3 rounded badge mb-2 ">Found {{store.cardList.length}} cards</div>
@@ -18,6 +21,7 @@
 </template>
 
 <script>
+  import SearchbarComponent from './components/SearchbarComponent.vue'
   import SplashComponent from './components/SplashComponent.vue';
   import CardComponent from './components/CardComponent.vue';
   import HeaderComponent from './components/HeaderComponent.vue';
@@ -29,11 +33,12 @@
       CardComponent,
       HeaderComponent,
       SplashComponent,
+      SearchbarComponent,
     },
     data(){
       return{
         store,
-        
+        params: null,
       }
     },
     methods:{
@@ -45,10 +50,42 @@
       },
       splashTrue(){
         store.splash = true
-      }
+      },
+      getArchetype(){
+        axios.get(store.archetypeUrl)
+          .then(function (response) {
+            // handle success
+            console.log(response.data);
+            store.archetypeList = response.data;
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });
+      },
+      filterArchetype(search){
+        if(search){
+          this.params = {
+            archetype: search
+          }
+        } else{
+          this.params = null;
+        }
+        this.getCardFiltered()
+      },
+      getCardFiltered(){
+        axios.get(`${store.apiUrl}`, {params: this.params}).then((response) =>{
+          store.cardList = response.data.data;
+          store.splash = false
+        })
+      },
     },
     created(){
-      this.getCard()
+      this.getCard(),
+      this.getArchetype()
     }
   }
 </script>
